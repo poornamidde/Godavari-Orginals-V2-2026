@@ -1,0 +1,66 @@
+:root{
+  --primary:#2E7D32;
+  --accent:#669913;
+  --warm:#2d7a16;
+  --cool:#cab923;
+  --bg:#cbd4cc;
+  --text:#1B5E20;
+  --muted:#6b6b6b;
+  --danger:#D32F2F;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, Poppins, Roboto, Arial, sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit}
+
+/* Layout: comfortable max-width to avoid big side gaps */
+.container{max-width:1140px;margin:0 auto;padding:14px;}
+@media (max-width:576px){.container{padding:12px;}}
+
+/* Navbar */
+.navbar{background:#ffffffcc;backdrop-filter:blur(8px);border-bottom:1px solid rgba(0,0,0,0.04)}
+.logo{width:44px;height:44px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--warm));box-shadow:0 6px 18px rgba(46,125,50,0.08)}
+.navbar .nav-link.active{color:var(--warm) !important; font-weight:700;}
+
+/* Cart badge (red) */
+.cart-count{background:var(--danger);color:#fff;padding:2px 8px;border-radius:999px;font-weight:700;margin-left:6px;font-size:0.85rem}
+
+/* Buttons and accents */
+.btn-success{background:linear-gradient(90deg,var(--primary),var(--accent));border:none}
+.btn-outline-success{border-color:rgba(46,125,50,0.15);color:var(--text)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(14,44,18,0.06)}
+
+/* Hero and bilingual heading */
+.brand-animated{font-size:2.2rem;font-family:'Poppins',sans-serif;color:var(--primary);position:relative;display:inline-block;line-height:1.02}
+.lang-text{position:absolute;top:0;left:0;opacity:0;transform:translateY(10px);transition:all .9s ease;pointer-events:none}
+.lang-text.english{opacity:1;position:relative;transform:none}
+.lang-text.telugu{font-family:'Gurajada',serif;font-size:2.4rem;background:linear-gradient(90deg,var(--primary),var(--accent),var(--warm));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* Animation loops */
+@keyframes langSwitch{0%,40%{opacity:1;transform:translateY(0)}50%,100%{opacity:0;transform:translateY(-20px)}}
+@keyframes langAppear{0%,40%{opacity:0;transform:translateY(20px)}50%,100%{opacity:1;transform:translateY(0)}}
+.brand-animated .english{animation:langSwitch 6s infinite}
+.brand-animated .telugu{animation:langAppear 6s infinite}
+
+/* Fade-up */
+.fade-up{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+.fade-up.in-view{opacity:1;transform:none}
+
+/* Card styles */
+.card{border-radius:12px;overflow:hidden}
+.card-img-top{height:220px;object-fit:cover}
+
+/* Footer small */
+.footer{background:linear-gradient(90deg,#f1f8f1,#fffbe6,#e3f2fd);padding-top:12px;padding-bottom:8px;font-size:0.95rem}
+.footer a.footer-active{color:var(--warm);font-weight:700}
+
+/* cart item */
+.cart-item img{width:110px;height:110px;object-fit:cover;border-radius:8px}
+
+/* responsive tweaks */
+@media (max-width:768px){
+  .brand-animated{font-size:1.6rem}
+  .lang-text.telugu{font-size:1.8rem}
+  .card-img-top{height:180px}
+  .navbar .nav-link{padding:.45rem .5rem}
+  .cart-count{font-size:0.78rem}
+}

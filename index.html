@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Godavari Originals - Home</title>
+<link rel="icon" href="images/hero.jpg">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gurajada&family=Poppins:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background:var(--bg);color:var(--text);">
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-2">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <div class="logo">G</div><span class="fw-semibold text-success fs-5">Godavari Originals</span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-center gap-lg-3">
+        <li class="nav-item"><a href="index.html" class="nav-link fw-semibold">Home</a></li>
+        <li class="nav-item"><a href="shop.html" class="nav-link fw-semibold">Shop</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link fw-semibold">About</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link fw-semibold">Contact</a></li>
+        <li class="nav-item"><a href="cart.html" class="btn btn-outline-success d-flex align-items-center gap-2">Cart <span class="cart-count fw-bold">0</span></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="container py-5 d-flex flex-column flex-lg-row align-items-center justify-content-between gap-4">
+  <div class="col-lg-6 fade-up">
+    <span class="badge bg-success text-white rounded-pill px-3 py-2">Small Batch • Handcrafted</span>
+    <h1 class="brand-animated mt-3">
+      <span class="lang-text english">Godavari Originals</span>
+      <span class="lang-text telugu">గోదావరి ఒరిజినల్స్</span><br>
+      <span class="text-dark">Snacks that taste like home</span>
+    </h1>
+    <p class="text-secondary mt-3">Savory, spicy, and lovingly prepared — discover our curated range of traditional snacks made with high-quality ingredients from the Godavari region.</p>
+    <button class="btn btn-success px-4 mt-2" onclick="location.href='shop.html'">Shop Now</button>
+  </div>
+  <div class="col-lg-5 fade-up"><img src="images/hero.jpg" alt="snacks" class="img-fluid rounded-4 shadow-sm"></div>
+</section>
+
+<section class="container py-5 fade-up">
+  <h2 class="fw-bold mb-4">Featured Products</h2>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm h-100"><img src="images/product-1.jpg" class="card-img-top" alt="Masala Mix">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Masala Mix</h5>
+          <p class="card-text text-secondary small">Spiced blend with curry leaf and cumin.</p>
+          <div class="d-flex justify-content-between align-items-center"><span class="fw-bold text-success">₹120</span><button class="btn btn-success btn-sm px-3" onclick="addToCart('p1','Masala Mix',120,'images/product-1.jpg')">Add to Cart</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm h-100"><img src="images/product-2.jpg" class="card-img-top" alt="Peanut Crunch">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Peanut Crunch</h5>
+          <p class="card-text text-secondary small">Crunchy peanuts roasted with jaggery.</p>
+          <div class="d-flex justify-content-between align-items-center"><span class="fw-bold text-success">₹150</span><button class="btn btn-success btn-sm px-3" onclick="addToCart('p2','Peanut Crunch',150,'images/product-2.jpg')">Add to Cart</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm h-100"><img src="images/product-3.jpg" class="card-img-top" alt="Sweet & Salt">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Sweet & Salt</h5>
+          <p class="card-text text-secondary small">Balanced sweet and salty flavors.</p>
+          <div class="d-flex justify-content-between align-items-center"><span class="fw-bold text-success">₹130</span><button class="btn btn-success btn-sm px-3" onclick="addToCart('p3','Sweet & Salt',130,'images/product-3.jpg')">Add to Cart</button></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="alert alert-success d-flex align-items-center justify-content-between mt-5 rounded-4 shadow-sm px-4 py-3"><div class="fw-semibold">Can't find what you're looking for? Explore more in our shop.</div><a href="shop.html" class="btn btn-outline-dark">Shop More</a></div>
+</section>
+
+<footer class="footer text-center fade-up"><div class="container"><p class="small-muted">© 2025 Godavari Originals — Made with 💚 in Andhra Pradesh</p></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
