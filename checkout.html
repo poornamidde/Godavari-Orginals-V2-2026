@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Checkout - Godavari Originals</title>
+  <link rel="icon" href="images/favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    body {
+      background: linear-gradient(180deg,#E8F5E9,#FFFDE7);
+      color: var(--text);
+    }
+    .checkout-card {
+      background: #fff;
+      padding: 24px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(46,125,50,0.08);
+    }
+    .summary-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+    }
+    .form-error {
+      font-size: 0.85rem;
+      color: #D32F2F;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-2">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <div class="logo">G</div>
+      <span class="fw-semibold text-success fs-5">Godavari Originals</span>
+    </a>
+
+    <button class="navbar-toggler border-0" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto gap-3">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+        <li class="nav-item"><a href="cart.html" class="nav-link">Cart</a></li>
+        <li class="nav-item"><a href="checkout.html" class="nav-link active fw-bold text-success">Checkout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- MAIN CHECKOUT -->
+<main class="container py-5">
+  <div class="row g-4">
+
+    <!-- LEFT SIDE — FORM -->
+    <div class="col-lg-7 fade-up">
+      <div class="checkout-card">
+        <h2 class="fw-bold mb-3">Delivery Details</h2>
+
+        <form id="checkout-form">
+
+          <!-- Name -->
+          <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input id="name" class="form-control" required>
+            <div id="name-err" class="form-error"></div>
+          </div>
+
+          <!-- Phone -->
+          <div class="mb-3">
+            <label class="form-label">Phone (10 digits)</label>
+            <input id="phone" class="form-control" inputmode="numeric" required>
+            <div id="phone-err" class="form-error"></div>
+          </div>
+
+          <!-- Address -->
+          <div class="mb-3">
+            <label class="form-label">Full Address</label>
+            <textarea id="address" rows="3" class="form-control" required></textarea>
+            <div id="address-err" class="form-error"></div>
+          </div>
+
+          <!-- PIN / City / State -->
+          <div class="row g-2">
+            <div class="col-4">
+              <label class="form-label">Pincode</label>
+              <input id="pincode" class="form-control" inputmode="numeric" required>
+              <div id="pincode-err" class="form-error"></div>
+            </div>
+            <div class="col-4">
+              <label class="form-label">City</label>
+              <input id="city" class="form-control" required>
+              <div id="city-err" class="form-error"></div>
+            </div>
+            <div class="col-4">
+              <label class="form-label">State</label>
+              <input id="state" class="form-control" required>
+              <div id="state-err" class="form-error"></div>
+            </div>
+          </div>
+
+          <!-- Autofill -->
+          <div class="mt-3 d-flex gap-2">
+            <button type="button" id="autofill" class="btn btn-outline-success">
+              Auto-fill Address
+            </button>
+            <button type="reset" class="btn btn-outline-secondary">Clear</button>
+          </div>
+
+          <!-- PAYMENT BUTTONS -->
+          <div class="mt-4 d-grid gap-2">
+
+            <!-- REAL STRIPE PAYMENT LINK -->
+            <a href="https://buy.stripe.com/test_SAMPLE_PAYMENT_LINK"
+               target="_blank"
+               class="btn btn-success py-2">
+               Pay with Card (Stripe Secure)
+            </a>
+
+            <!-- COD OPTION -->
+            <button type="button"
+                    onclick="confirmCOD()"
+                    class="btn btn-outline-primary py-2">
+              Cash on Delivery (COD)
+            </button>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+
+    <!-- RIGHT SIDE — SUMMARY -->
+    <div class="col-lg-5 fade-up">
+      <div class="summary-card">
+        <h5 class="fw-bold mb-3">Order Summary</h5>
+        <div id="summary-wrap"></div>
+        <hr>
+        <div class="d-flex justify-content-between fs-5">
+          <span>Total</span>
+          <span id="summary-total">₹0</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+
+<!-- FOOTER -->
+<footer class="footer text-center fade-up">
+  <div class="container">
+    <p class="small mb-0">© 2025 <strong>Godavari Originals</strong> — Secure Checkout</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+
+
+<script>
+/* Autofill Address */
+document.getElementById("autofill").addEventListener("click", () => {
+  if (!navigator.geolocation) return alert("Geolocation not supported");
+
+  navigator.geolocation.getCurrentPosition(async pos => {
+    const lat = pos.coords.latitude;
+    const lon = pos.coords.longitude;
+
+    try {
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+      );
+      const data = await res.json();
+      const addr = data.address || {};
+
+      address.value = data.display_name || "";
+      city.value = addr.city || addr.town || addr.village || "";
+      state.value = addr.state || "";
+      pincode.value = addr.postcode || "";
+
+      showToast("Address auto-filled");
+    } catch {
+      alert("Auto-fill failed");
+    }
+  });
+});
+
+
+/* COD FUNCTION */
+function confirmCOD() {
+  if (confirm("Place order with Cash on Delivery?")) {
+    localStorage.removeItem(STORAGE_KEY);
+    renderNavBadge();
+    showToast("Order placed successfully!");
+    window.location.href = "thankyou.html";
+  }
+}
+
+
+/* VALIDATION */
+function validateForm(vals) {
+  const errs = {};
+  if (!vals.name) errs.name = "Required";
+  if (!/^[0-9]{10}$/.test(vals.phone)) errs.phone = "Phone must be 10 digits";
+  if (!vals.address) errs.address = "Required";
+  if (!/^[0-9]{6}$/.test(vals.pincode)) errs.pincode = "Must be 6 digits";
+  if (!vals.city) errs.city = "Required";
+  if (!vals.state) errs.state = "Required";
+  return errs;
+}
+
+
+/* FORM SUBMIT */
+document.getElementById("checkout-form").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const vals = {
+    name: name.value.trim(),
+    phone: phone.value.trim(),
+    address: address.value.trim(),
+    pincode: pincode.value.trim(),
+    city: city.value.trim(),
+    state: state.value.trim()
+  };
+
+  document.querySelectorAll(".form-error").forEach(e => (e.textContent = ""));
+  const errs = validateForm(vals);
+
+  if (Object.keys(errs).length) {
+    Object.keys(errs).forEach(k => {
+      document.getElementById(k + "-err").textContent = errs[k];
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+
+  showToast("Please choose a payment option below.");
+});
+
+
+/* SUMMARY BOX */
+function renderSummaryBox() {
+  const wrap = document.getElementById("summary-wrap");
+  wrap.innerHTML = "";
+
+  const cart = getCart();
+  if (cart.length === 0) {
+    wrap.innerHTML = `<div class="small text-muted">Cart is empty.</div>`;
+    summary-total.textContent = "₹0";
+    return;
+  }
+
+  let total = 0;
+  cart.forEach(i => {
+    total += i.qty * i.price;
+    const row = document.createElement("div");
+    row.className = "d-flex justify-content-between small";
+    row.innerHTML = `<div>${i.name} × ${i.qty}</div><div>₹${(i.price*i.qty).toFixed(0)}</div>`;
+    wrap.appendChild(row);
+  });
+
+  document.getElementById("summary-total").textContent = "₹" + total.toFixed(0);
+}
+
+document.addEventListener("DOMContentLoaded", renderSummaryBox);
+</script>
+
+</body>
+</html>
