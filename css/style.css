@@ -1,0 +1,342 @@
+/* ===============================
+   ROOT THEME
+   =============================== */
+
+:root{
+  --primary:#2E7D32;
+  --accent:#669913;
+  --warm:#2d7a16;
+  --bg:#cbd4cc;
+  --text:#1B5E20;
+  --muted:#6b6b6b;
+  --danger:#D32F2F;
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  font-family:Inter,Poppins,Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+a{text-decoration:none;color:inherit}
+
+/* ===============================
+   LAYOUT
+   =============================== */
+
+.container{
+  max-width:1140px;
+  margin:auto;
+  padding:14px;
+}
+
+
+.logo{
+  width:42px;height:42px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,var(--primary),var(--warm));
+  color:#fff;
+  font-weight:800;
+}
+
+
+/* cart badge */
+.cart-count{
+  background:var(--danger);
+  color:#fff;
+  padding:2px 8px;
+  border-radius:999px;
+  font-size:.8rem;
+  font-weight:700;
+}
+
+/* ===============================
+   HERO SECTION
+   =============================== */
+
+.hero-section{
+  background:linear-gradient(180deg,#deecdf,#abc7af);
+  padding:90px 0 60px;
+}
+
+/* headline */
+.brand-animated{
+  font-size:2.2rem;
+  font-family:Poppins,sans-serif;
+  line-height:1.15;
+  color:var(--primary);
+}
+
+/* bilingual text */
+/* .lang-text{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transform:translateY(10px);
+}
+
+
+
+.lang-text.telugu{
+  font-family:Gurajada,serif;
+  font-size:2.4rem;
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ===============================
+   FADE UP
+   =============================== */
+
+/* .fade-up{
+  opacity:0;
+  transform:translateY(18px);
+  transition:.6s ease;
+}
+
+.fade-up.in-view{
+  opacity:1;
+  transform:none;
+} */ 
+
+/* ===============================
+   BILINGUAL BRAND TOGGLE
+   =============================== */
+
+.brand-animated{
+  font-size:2.2rem;
+  font-family:'Poppins',sans-serif;
+  color:var(--primary);
+  position:relative;
+  display:inline-block;
+  line-height:1.05;
+}
+
+/* base */
+.lang-text{
+  position:absolute;
+  top:0;
+  left:0;
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity .6s ease, transform .6s ease;
+  pointer-events:none;
+}
+
+/* active language */
+.lang-text.active{
+  opacity:1;
+  transform:none;
+  position:relative;
+}
+
+/* Telugu styling */
+.lang-text.telugu{
+  font-family:'Gurajada',serif;
+  font-size:2.4rem;
+  background:linear-gradient(
+    90deg,
+    var(--primary),
+    var(--accent),
+    var(--warm)
+  );
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* mobile */
+@media (max-width:576px){
+  .lang-text.telugu{font-size:2rem}
+  .lang-text.english{font-size:1.8rem}
+}
+
+
+/* ===============================
+   CARDS
+   =============================== */
+
+.card{
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.card-img-top{
+  height:220px;
+  object-fit:cover;
+}
+
+/* ===============================
+   CART ACTIONS
+   =============================== */
+
+.cart-action{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.qty-box{
+  display:flex;
+  align-items:center;
+  border:1px solid #ddd;
+  border-radius:8px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.qty-btn{
+  width:28px;height:28px;
+  border:none;
+  background:#f8f9fa;
+  font-weight:700;
+  cursor:pointer;
+  color:var(--primary);
+}
+
+.qty{
+  width:28px;
+  text-align:center;
+  font-weight:600;
+}
+
+/* ===============================
+   FOOTER
+   =============================== */
+
+.footer{
+  background:linear-gradient(90deg,#f1f8f1,#fffbe6,#e3f2fd);
+  padding:12px 0;
+  font-size:.9rem;
+}
+
+
+/* ===============================
+   ANIMATIONS
+   =============================== */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+
+/* =========================================
+   INSTAGRAM / iOS STYLE SCROLLABLE NAV
+   (ALL SCREEN SIZES)
+   ========================================= */
+
+html, body {
+  overflow-x: hidden;
+}
+  
+/* Navbar base */
+.navbar {
+  width: 100%;
+}
+
+/* Brand */
+.navbar-brand {
+  flex-shrink: 0;
+  max-width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Scroll container */
+.nav-scroll {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+
+  margin-left: auto;
+  max-width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar (Chrome/Safari) */
+.nav-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Prevent wrapping */
+.nav-scroll .nav-item {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* Nav pills */
+.navbar .nav-link {
+  padding: 6px 6px;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  background: #f4f6f4;
+  font-weight: 500;
+}
+
+/* Active pill */
+.navbar .nav-link.active {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: #fff !important;
+}
+
+/* Cart pill */
+.navbar .btn-outline-success {
+  padding: 6px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.lang-text{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transform:translateY(10px);
+  pointer-events:none; /* 🔥 THIS FIXES EVERYTHING */
+}
+/* ===============================
+   MOBILE NAV SIZE REDUCTION ONLY
+   =============================== */
+@media (max-width: 576px) {
+
+  /* Logo box */
+  .logo{
+    width:34px;
+    height:34px;
+    font-size:0.85rem;
+  }
+
+  /* Brand text */
+  .navbar-brand span{
+    font-size:1.2rem;
+  }
+
+  /* Nav pills */
+  .navbar .nav-link{
+    padding:4px 6px;
+    font-size:0.75rem;
+  }
+
+  /* Cart button */
+  .navbar .btn-outline-success{
+    padding:4px 10px;
+    font-size:0.75rem;
+  }
+
+  /* Reduce spacing between pills */
+  .nav-scroll{
+    gap:6px;
+  }
+}

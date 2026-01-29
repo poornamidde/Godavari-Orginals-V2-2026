@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Checkout - Godavari Originals</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-2">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <div class="logo">G</div><span class="fw-semibold text-success fs-5">Godavari Originals</span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-center gap-lg-3">
+        <li class="nav-item"><a href="index.html" class="nav-link fw-semibold">Home</a></li>
+        <li class="nav-item"><a href="shop.html" class="nav-link fw-semibold">Shop</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link fw-semibold">About</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link fw-semibold">Contact</a></li>
+        <li class="nav-item"><a href="cart.html" class="btn btn-outline-success d-flex align-items-center gap-2">Cart <span class="cart-count fw-bold">0</span></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<main class="container py-5">
+  <div class="row g-4">
+
+    <!-- FORM -->
+    <div class="col-lg-7">
+      <div class="summary-card">
+        <h3 class="fw-bold mb-3">Delivery Details</h3>
+
+        <div class="mb-3">
+          <label>Name</label>
+          <input id="name" class="form-control">
+          <div id="name-err" class="form-error"></div>
+        </div>
+
+        <div class="mb-3">
+          <label>Phone</label>
+          <input id="phone" class="form-control">
+          <div id="phone-err" class="form-error"></div>
+        </div>
+
+        <div class="mb-3">
+          <label>Address</label>
+          <textarea id="address" class="form-control"></textarea>
+          <div id="address-err" class="form-error"></div>
+        </div>
+
+        <div class="row g-2">
+          <div class="col">
+            <input id="city" class="form-control" placeholder="City">
+            <div id="city-err" class="form-error"></div>
+          </div>
+          <div class="col">
+            <input id="state" class="form-control" placeholder="State">
+            <div id="state-err" class="form-error"></div>
+          </div>
+          <div class="col">
+            <input id="pincode" class="form-control" placeholder="Pincode">
+            <div id="pincode-err" class="form-error"></div>
+          </div>
+        </div>
+
+        <div class="mt-4 d-grid gap-2">
+          <!-- ✅ WHATSAPP -->
+          <button class="btn btn-success" id="wa-btn">
+            Place Order via WhatsApp
+          </button>
+
+         
+          <!-- <button class="btn btn-outline-primary" onclick="confirmCOD()">
+            Cash on Delivery
+          </button> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="col-lg-5">
+      <div class="summary-card">
+        <h5 class="fw-bold mb-3">Order Summary</h5>
+        <div id="summary-wrap"></div>
+        <hr>
+        <div class="d-flex justify-content-between fw-bold">
+          <span>Total</span>
+          <span id="summary-total">₹0</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+<<<<<<< HEAD
+
+=======
+<footer class="footer text-center py-3">
+  <small class="text-muted">
+    © 2025 Godavari Originals — Made with 💚 in Andhra Pradesh
+  </small>
+</footer>
+>>>>>>> 6b0466e (22-1)
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+document.getElementById("wa-btn").onclick = () => {
+  const vals = {
+    name: name.value.trim(),
+    phone: phone.value.trim(),
+    address: address.value.trim(),
+    city: city.value.trim(),
+    state: state.value.trim(),
+    pincode: pincode.value.trim()
+  };
+
+  const errs = validateForm(vals);
+  document.querySelectorAll(".form-error").forEach(e => e.textContent = "");
+
+  if (Object.keys(errs).length) {
+    Object.keys(errs).forEach(k => {
+      document.getElementById(k + "-err").textContent = errs[k];
+    });
+    return;
+  }
+
+  checkoutWhatsApp(vals, "WhatsApp");
+};
+</script>
+
+</body>
+</html>
